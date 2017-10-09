@@ -58,5 +58,6 @@ LyngkTestCase.prototype.testHash=function(){
 
 
 LyngkTestCase.prototype.testVac=function(){
-
+    var inter= new Lyngk.Intersection();
+    assertEquals(inter.getState(),Lyngk.State.VACANT);
 }
