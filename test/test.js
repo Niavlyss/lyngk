@@ -23,3 +23,23 @@ LyngkTestCase.prototype.test2=function(){
     }
     assertTrue(cpt==43);
 }
+
+LyngkTestCase.prototype.test3=function(){
+    var c="A";
+    var l=3;
+    var ch=c+l;
+    var coord=new Lyngk.Coordinates(c,l);
+    assertTrue(coord.toString()==ch);
+}
+
+LyngkTestCase.prototype.test4=function(){
+    var coord= new Lyngk.Coordinates("A",1);
+    assertTrue(coord.toString()=="invalid");
+}
+
+LyngkTestCase.prototype.test5=function(){
+    var coord=new Lyngk.Coordinates("A",1);
+    var coord2=coord.clone();
+
+    assertTrue(coord.getColones()==coord2.getColones() && coord.getlignes()==coord2.getlignes());
+}
