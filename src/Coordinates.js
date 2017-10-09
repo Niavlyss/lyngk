@@ -42,4 +42,9 @@ Lyngk.Coordinates = function (c, l) {
     this.clone=function(){
         return new Lyngk.Coordinates(c,l);
     }
+
+    this.hash=function(){
+        return (((c.charCodeAt(0)-64)*9)+l);
+    }
+
 };

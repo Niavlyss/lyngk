@@ -43,3 +43,20 @@ LyngkTestCase.prototype.test5=function(){
 
     assertTrue(coord.getColones()==coord2.getColones() && coord.getlignes()==coord2.getlignes());
 }
+
+LyngkTestCase.prototype.testHash=function(){
+    var coord = new Lyngk.Coordinates("A", 3);
+    var coord2 = new Lyngk.Coordinates("B", 4);
+
+    if (coord.coordVal() && coord2.coordVal()){
+        var h1=coord.hash();
+        var h2=coord2.hash();
+        assertTrue(h1!=h2 && h1==12);
+
+    }
+}
+
+
+LyngkTestCase.prototype.testVac=function(){
+
+}
