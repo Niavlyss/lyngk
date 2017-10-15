@@ -20,9 +20,5 @@ Lyngk.Engine = function () {
         }
     }
 
-
-
-    this.initPartie=function(){
-        
-    }
+    
 };
