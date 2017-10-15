@@ -44,7 +44,7 @@ LyngkTestCase.prototype.test5=function(){
     assertTrue(coord.getColones()==coord2.getColones() && coord.getlignes()==coord2.getlignes());
 }
 
-LyngkTestCase.prototype.testHash=function(){
+LyngkTestCase.prototype.testHash6=function(){
     var coord = new Lyngk.Coordinates("A", 3);
     var coord2 = new Lyngk.Coordinates("B", 4);
 
@@ -57,7 +57,49 @@ LyngkTestCase.prototype.testHash=function(){
 }
 
 
-LyngkTestCase.prototype.testVac=function(){
+LyngkTestCase.prototype.testVac7=function(){
     var inter= new Lyngk.Intersection();
     assertEquals(inter.getState(),Lyngk.State.VACANT);
+}
+
+LyngkTestCase.prototype.test8=function(){
+    var engine=new Lyngk.Engine();
+    var coord=new Lyngk.Coordinates("A",3);
+    var inter=new Lyngk.Intersection(coord);
+    engine.placer(Lyngk.Color.BLUE,inter);
+    assertTrue(inter.getState()===Lyngk.State.ONE_PIECE && inter.getColor()===Lyngk.Color.BLUE);
+}
+
+LyngkTestCase.prototype.test9=function(){
+    var engine=new Lyngk.Engine();
+    var coord=new Lyngk.Coordinates("A",3);
+    var inter=new Lyngk.Intersection(coord);
+    engine.placer(Lyngk.Color.BLUE,inter);
+    engine.placer(Lyngk.Color.RED,inter);
+
+    console.log(inter.getColor());
+
+    assertTrue(inter.getState()===Lyngk.State.STACK && inter.getColor()===Lyngk.Color.RED);
+}
+
+LyngkTestCase.prototype.test10=function() {
+    var engine=new Lyngk.Engine();
+    var coord=new Lyngk.Coordinates("A",3);
+    var inter=new Lyngk.Intersection(coord);
+    for(var i=0;i<5;i++){
+        engine.placer(Lyngk.Color.BLUE,inter);
+    }
+
+    assertTrue(inter.getState()===Lyngk.State.FULL_STACK);
+}
+
+
+LyngkTestCase.prototype.test11=function () {
+    var engine= new Lyngk.Engine();
+    assertTrue(engine.initPartie().res);
+}
+
+LyngkTestCase.prototype.test12=function () {
+    var engine= new Lyngk.Engine();
+    assertTrue(engine.initPartie().b===0 && engine.initPartie().bl===0 && engine.initPartie().r===0 && engine.initPartie().g===0 && engine.initPartie().i===0 && engine.initPartie().w===0);
 }
