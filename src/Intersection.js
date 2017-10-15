@@ -4,8 +4,9 @@ Lyngk.State = {VACANT: 0, ONE_PIECE: 1, STACK: 2, FULL_STACK: 3};
 
 Lyngk.Intersection = function (c) {
     this.c=new Lyngk.Coordinates();
+    var cpt=0;
     var etat=Lyngk.State.VACANT;
-    var color=Lyngk.Color.BLUE;
+    var color;
 
     this.getState=function () {
         return etat;
@@ -15,15 +16,14 @@ Lyngk.Intersection = function (c) {
         return color;
     }
 
-
-    this.placer=function(pionColor) {
-        if (etat == Lyngk.State.ONE_PIECE){
-            etat = Lyngk.State.STACK;
-        } else if (etat == Lyngk.State.VACANT){
-            etat = Lyngk.State.ONE_PIECE;
-        }
-        color=pionColor;
+    this.setColor=function(col){
+        color=col;
     }
+
+    this.setState=function(state){
+        etat=state;
+    }
+
 
 
 };

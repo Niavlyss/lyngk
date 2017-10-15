@@ -20,5 +20,5 @@ Lyngk.Engine = function () {
         }
     }
 
-    
+
 };
