@@ -77,8 +77,6 @@ LyngkTestCase.prototype.test9=function(){
     engine.placer(Lyngk.Color.BLUE,inter);
     engine.placer(Lyngk.Color.RED,inter);
 
-    console.log(inter.getColor());
-
     assertTrue(inter.getState()===Lyngk.State.STACK && inter.getColor()===Lyngk.Color.RED);
 }
 
@@ -96,10 +94,16 @@ LyngkTestCase.prototype.test10=function() {
 
 LyngkTestCase.prototype.test11=function () {
     var engine= new Lyngk.Engine();
+    engine.initPartie();
     assertTrue(engine.initPartie().res);
 }
 
 LyngkTestCase.prototype.test12=function () {
     var engine= new Lyngk.Engine();
-    assertTrue(engine.initPartie().b===0 && engine.initPartie().bl===0 && engine.initPartie().r===0 && engine.initPartie().g===0 && engine.initPartie().i===0 && engine.initPartie().w===0);
+    var total=0;
+    engine.initPartie();
+    for(var i=0;i<engine.initPartie().tab.length;i++){
+        total+=engine.initPartie().tab[i];
+    }
+    assertTrue(total===0);
 }
