@@ -7,6 +7,7 @@ Lyngk.Intersection = function (c) {
     var cpt=0;
     var etat=Lyngk.State.VACANT;
     var color;
+    var hauteur;
 
     this.getState=function () {
         return etat;
@@ -24,6 +25,12 @@ Lyngk.Intersection = function (c) {
         etat=state;
     }
 
+    this.getHauteur =function () {
+        return hauteur;
+    }
 
+    this.setHauteur=function (h) {
+        hauteur=h;
+    }
 
 };

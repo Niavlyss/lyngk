@@ -107,3 +107,12 @@ LyngkTestCase.prototype.test12=function () {
     }
     assertTrue(total===0);
 }
+
+LyngkTestCase.prototype.test13=function(){
+    var engine= new Lyngk.Engine();
+    engine.initPartie();
+    for(var i=0;i<engine.initPartie().tabInter.length;i++){
+        assertTrue(engine.initPartie().tabInter[i].getHauteur()===1);
+    }
+
+}

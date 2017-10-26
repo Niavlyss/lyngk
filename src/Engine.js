@@ -4,18 +4,19 @@
 Lyngk.Color = {BLACK: 0, IVORY: 1, BLUE: 2, RED: 3, GREEN: 4, WHITE: 5};
 
 Lyngk.Engine = function () {
-    var listePiece = [];
+    var listePieces = [];
+    var listeInter = [];
 
 
     this.placer = function (pionColor, inter) {
         var piece = new Lyngk.Piece;
-        listePiece.push(piece.setColor(pionColor));
+        listePieces.push(piece.setColor(pionColor));
         inter.setColor(pionColor);
         if (inter.getState() === Lyngk.State.VACANT) {
             inter.setState(Lyngk.State.ONE_PIECE);
         } else if (inter.getState() === Lyngk.State.ONE_PIECE) {
             inter.setState(Lyngk.State.STACK);
-        } else if (listePiece.length === 5) {
+        } else if (listePieces.length === 5) {
             inter.setState(Lyngk.State.FULL_STACK);
         }
     }
@@ -43,6 +44,8 @@ Lyngk.Engine = function () {
 
                     this.placer(randColor, inter);
                     if (inter.getState() === Lyngk.State.ONE_PIECE) {
+                        inter.setHauteur(1);
+                        listeInter.push(inter);
                         result = true;
                     } else {
                         result = false;
@@ -52,7 +55,7 @@ Lyngk.Engine = function () {
         }
 
         return {
-            res: result, tab: colorDispo
+            res: result, tab: colorDispo, tabInter : listeInter
         };
     }
 };
