@@ -114,5 +114,14 @@ LyngkTestCase.prototype.test13=function(){
     for(var i=0;i<engine.initPartie().tabInter.length;i++){
         assertTrue(engine.initPartie().tabInter[i].getHauteur()===1);
     }
-
 }
+
+LyngkTestCase.prototype.test14=function(){
+    var engine = new Lyngk.Engine();
+    engine.initPartie();
+    var interPlateau = engine.initPartie().tabInter[1];
+    var inter = new Lyngk.Intersection(interPlateau.getCoord());
+    engine.placer(Lyngk.Color.BLACK,inter);
+    assertTrue(engine.initPartie().tabInter[1].getColor()===Lyngk.Color.BLACK);
+}
+

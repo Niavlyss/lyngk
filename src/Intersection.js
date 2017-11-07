@@ -9,6 +9,10 @@ Lyngk.Intersection = function (c) {
     var color;
     var hauteur;
 
+    this.getCoord=function () {
+        return c;
+    }
+
     this.getState=function () {
         return etat;
     }
