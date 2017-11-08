@@ -41,13 +41,52 @@ Lyngk.Engine = function () {
         var p2 = new Lyngk.Coordinates(piece2[0],parseInt(piece2[1]));
 
         if(p1.coordVal() && p2.coordVal()) {
-            if(listeInter[p2].getState() !== Lyngk.State.VACANT ){
+            if(listeInter[p2].getState() !== Lyngk.State.VACANT && validMove(p1,p2)){
                 var stack = listeInter[p1].remove();
                 for(var i =0; i<stack.length;i++){
                     listeInter[p2].placer(stack[i].getColor());
                 }
             }
         }
+    }
+
+    var validMove = function (piece1,piece2){
+        var testFlag = false;
+
+        if(piece1.getColones().charCodeAt(0) === piece2.getColones().charCodeAt(0)){
+            var deplacement = piece1.getlignes() - piece2.getlignes();
+            if(deplacement === 1 || deplacement === -1){
+                testFlag = true;
+            }
+        }else if(piece1.getColones().charCodeAt(0) < piece2.getColones().charCodeAt(0)){
+            var deplacement = piece1.getlignes() - piece2.getlignes();
+            if(deplacement === 0 || deplacement === -1){
+                testFlag = true;
+            }
+        }else if(piece1.getColones().charCodeAt(0) > piece2.getColones().charCodeAt(0)){
+            var deplacement = piece1.getlignes() - piece2.getlignes();
+            if(deplacement === 1 || deplacement === 0){
+                testFlag = true;
+            }
+        }
+
+        var diffColones = (piece1.getColones().charCodeAt(0)) - (piece2.getColones().charCodeAt(0));
+
+        if(diffColones > 1 || diffColones < -1){
+            testFlag = false;
+        }
+
+        if(listeInter[piece1].getHauteur() == 0 || listeInter[piece2].getHauteur()==0)
+            testFlag = false;
+
+        if(listeInter[piece1].getState() === Lyngk.State.FULL_STACK)
+            testFlag = false;
+
+        if(listeInter[piece1].getState() === Lyngk.State.ONE_PIECE && listeInter[piece2].getState() === Lyngk.State.STACK)
+            testFlag = false;
+
+        return testFlag;
+
     }
 
     this.one_piece_rempli = function()

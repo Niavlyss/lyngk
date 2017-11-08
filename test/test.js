@@ -162,5 +162,30 @@ LyngkTestCase.prototype.test17 = function() {
 }
 
 LyngkTestCase.prototype.test18 = function (){
-
+    var engine = new Lyngk.Engine();
+    engine.move("B3","C2");
+    var plate = engine.plate();
+    assertTrue(plate["B3"].getHauteur() === 1 && plate["C2"].getHauteur() === 1);
 }
+
+LyngkTestCase.prototype.test19 = function () {
+    var engine = new Lyngk.Engine();
+    engine.move("H5","H8");
+    var plate = engine.plate();
+    assertTrue(plate["H5"].getHauteur() === 1 && plate["H8"].getHauteur() === 1);
+}
+
+LyngkTestCase.prototype.test20 = function () {
+    var engine = new Lyngk.Engine();
+    engine.move("D2","C1")
+    engine.move("C1", "C2");
+    engine.move("C2","C3");
+    engine.move("C3","C4");
+    engine.move("C4","B5");
+    var plate = engine.plate();
+
+    assertTrue(plate["C4"].getHauteur() === 5 && plate["B5"].getHauteur() === 1);
+}
+
+
+
