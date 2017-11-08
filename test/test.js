@@ -217,3 +217,11 @@ LyngkTestCase.prototype.test23 = function () {
     assertTrue(hauteur1 === plate["C1"].getHauteur() && hauteur2 === plate["C2"].getHauteur());
 }
 
+LyngkTestCase.prototype.test24= function () {
+    var engine = new Lyngk.Engine();
+    assertTrue(engine.getJoueurCourant()===Lyngk.Joueurs.Joueur1);
+}
+
+LyngkTestCase.prototype.test25 = function () {
+    
+}

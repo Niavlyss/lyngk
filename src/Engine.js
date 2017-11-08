@@ -2,12 +2,16 @@
 
 // enums definition
 Lyngk.Color = {BLACK: 0, IVORY: 1, BLUE: 2, RED: 3, GREEN: 4, WHITE: 5};
+Lyngk.Joueurs = {Joueur1 : 0, Joueur2 : 1};
 
 Lyngk.Engine = function () {
     var listeInter = [];
 
+    var joueurActuel;
+
 
     var initPartie = function () {
+        joueurActuel = Lyngk.Joueurs.Joueur1;
         var goodCoord = Lyngk.coordValables;
         for(var i=0;i<goodCoord.length;i++){
             listeInter[goodCoord[i]]=new Lyngk.Intersection();
@@ -46,6 +50,7 @@ Lyngk.Engine = function () {
                 for(var i =0; i<stack.length;i++){
                     listeInter[p2].placer(stack[i].getColor());
                 }
+                changerJoueur();
             }
         }
     }
@@ -117,10 +122,26 @@ Lyngk.Engine = function () {
                 }
             }
         }
-        
+
+
+
         return testFlag;
 
     }
+
+    var changerJoueur = function()
+    {
+        if(joueurActuel == Lyngk.Joueurs.Joueur1)
+            joueurActuel = Lyngk.Joueurs.Joueur2;
+        else
+            joueurActuel = Lyngk.Joueurs.Joueur1;
+    }
+
+
+    this.getJoueurCourant = function (){
+        return joueurActuel;
+    }
+
 
     this.one_piece_rempli = function()
     {
