@@ -85,6 +85,10 @@ Lyngk.Engine = function () {
         if(listeInter[piece1].getState() === Lyngk.State.ONE_PIECE && listeInter[piece2].getState() === Lyngk.State.STACK)
             testFlag = false;
 
+        if(listeInter[piece1].getHauteur() < listeInter[piece1].getHauteur())
+            testFlag = false;
+
+
         return testFlag;
 
     }

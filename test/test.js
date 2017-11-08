@@ -187,5 +187,20 @@ LyngkTestCase.prototype.test20 = function () {
     assertTrue(plate["C4"].getHauteur() === 5 && plate["B5"].getHauteur() === 1);
 }
 
+LyngkTestCase.prototype.test21 = function (){
+    var engine = new Lyngk.Engine();
+    engine.move("I7", "H6");
+    //Impossible move because h5 is one_piece and h6 is stack
+    engine.move("H5","H6");
+    var plate = engine.plate();
+    assertTrue(plate["H5"].getHauteur() === 1 && plate["H6"].getHauteur() === 2);
+}
 
-
+LyngkTestCase.prototype.test22 = function (){
+    var engine = new Lyngk.Engine();
+    engine.move("G4","H5");
+    //impossible move because H5 is higher than H6
+    engine.move("H6","H5")
+    var plate = engine.plate();
+    assertTrue(plate["H6"].getHauteur() === 1 && plate["H5"].getHauteur() === 2);
+}
