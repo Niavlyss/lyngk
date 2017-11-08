@@ -223,5 +223,7 @@ LyngkTestCase.prototype.test24= function () {
 }
 
 LyngkTestCase.prototype.test25 = function () {
-    
+    var engine =  new Lyngk.Engine();
+    engine.move("A3","B3");
+    assertTrue(engine.getJoueurCourant()===Lyngk.Joueurs.Joueur2);
 }
