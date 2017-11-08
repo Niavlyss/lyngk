@@ -134,8 +134,8 @@ LyngkTestCase.prototype.test15=function(){
     var A3color = plate["A3"].getColor();
 
     engine.move("A3","B3");
-    var plate = engine.plate();
-    assertTrue(plate["A3"].getHauteur() === 0 && plate["B3"].getColor() === A3color && plate["B3"].getHauteur() === 2);
+    var plate2 = engine.plate();
+    assertTrue(plate2["A3"].getHauteur() === 0 && plate2["B3"].getColor() === A3color && plate2["B3"].getHauteur() === 2);
 }
 
 LyngkTestCase.prototype.test16= function(){
@@ -177,7 +177,7 @@ LyngkTestCase.prototype.test19 = function () {
 
 LyngkTestCase.prototype.test20 = function () {
     var engine = new Lyngk.Engine();
-    engine.move("D2","C1")
+    engine.move("D2","C1");
     engine.move("C1", "C2");
     engine.move("C2","C3");
     engine.move("C3","C4");
@@ -204,3 +204,16 @@ LyngkTestCase.prototype.test22 = function (){
     var plate = engine.plate();
     assertTrue(plate["H6"].getHauteur() === 1 && plate["H5"].getHauteur() === 2);
 }
+
+
+LyngkTestCase.prototype.test23 = function () {
+    var engine = new Lyngk.Engine();
+    var plate = engine.plate();
+
+    var hauteur1 = plate["C1"].getHauteur();
+    var hauteur2 = plate["C2"].getHauteur();
+
+    engine.move("C1","C2");
+    assertTrue(hauteur1 === plate["C1"].getHauteur() && hauteur2 === plate["C2"].getHauteur());
+}
+

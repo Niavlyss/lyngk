@@ -89,6 +89,35 @@ Lyngk.Engine = function () {
             testFlag = false;
 
 
+        var listeP1 = listeInter[piece1].getPieces();
+        var tabCpt=[0,0,0,0,0,0];
+        for(var i =0;i<listeP1.length;i++){
+            if (listeP1[i].getColor()===Lyngk.Color.BLACK){
+                tabCpt[0]++;
+            }else if (listeP1[i].getColor()===Lyngk.Color.BLUE){
+                tabCpt[1]++;
+            }else if (listeP1[i].getColor()===Lyngk.Color.RED) {
+                tabCpt[2]++;
+            }else if (listeP1[i].getColor()===Lyngk.Color.GREEN) {
+                tabCpt[3]++;
+            }else if (listeP1[i].getColor()===Lyngk.Color.IVORY) {
+                tabCpt[4]++;
+            }else if (listeP1[i].getColor()===Lyngk.Color.WHITE) {
+                tabCpt[5]++;
+            }
+        }
+        for(var j=0;j<tabCpt.length;j++){
+            if(j>=0 && j<5){
+                if(tabCpt[j]>1){
+                    testFlag = false;
+                }
+            }else if(j===5){
+                if(tabCpt[j]>3){
+                    testFlag = false;
+                }
+            }
+        }
+        
         return testFlag;
 
     }

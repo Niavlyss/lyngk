@@ -52,4 +52,15 @@ Lyngk.Intersection = function () {
         return -1;
     }
 
+
+    this.colorInInter = function (color) {
+        var testFlag = false;
+        for(var i=0;i<listePiece.length; i++){
+            if(listePiece[i].getColor() == color){
+                testFlag = true;
+            }
+        }
+        return testFlag;
+    }
+
 };
