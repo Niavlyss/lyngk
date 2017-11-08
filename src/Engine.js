@@ -12,6 +12,8 @@ Lyngk.Engine = function () {
     var couleursJoueur1 = [];
     var couleursJoueur2 = [];
 
+    var scoreJ1 = 0;
+    var scoreJ2 = 0;
 
     var initPartie = function () {
         joueurActuel = Lyngk.Joueurs.Joueur1;
@@ -53,6 +55,7 @@ Lyngk.Engine = function () {
                 for(var i =0; i<stack.length;i++){
                     listeInter[p2].placer(stack[i].getColor());
                 }
+                this.verifEtatPartie(p2);
                 changerJoueur();
             }
         }
@@ -176,6 +179,38 @@ Lyngk.Engine = function () {
             }
         }
     }
+
+    this.getScore = function(joueur){
+        if(joueur == Lyngk.Joueurs.Joueur1)
+            return scoreJ1;
+        else
+            return scoreJ2;
+    }
+
+
+    this.nbOfPieces = function (){
+        var nbPieces = 0;
+        for(var coord in listeInter){
+            nbPieces += listeInter[coord].getHauteur();
+        }
+        return nbPieces;
+    }
+
+    this.verifEtatPartie = function (dernierCoup)
+    {
+        var color = listeInter[dernierCoup].getColor();
+        if(listeInter[dernierCoup].getState() === Lyngk.State.FULL_STACK && this.getPlayerColors(joueurActuel).indexOf(color) >= 0){
+            if(joueurActuel === Lyngk.Joueurs.Joueur1)
+                scoreJ1++;
+            else
+                scoreJ2;
+
+            listeInter[dernierCoup].remove();
+        }
+    }
+
+    
+
 
     this.one_piece_rempli = function()
     {

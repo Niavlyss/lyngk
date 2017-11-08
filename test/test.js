@@ -239,3 +239,24 @@ LyngkTestCase.prototype.test26 = function (){
 
     assertTrue(couleursJ1[0] === Lyngk.Color.RED && couleursJ2[0] === Lyngk.Color.GREEN);
 }
+
+LyngkTestCase.prototype.test27 = function () {
+    var engine = new Lyngk.Engine();
+    var plate = engine.plate();
+
+    engine.claimColor(Lyngk.Color.BLUE);
+    engine.move("A3","B3");
+
+    engine.claimColor(Lyngk.Color.GREEN);
+    engine.move("H6","G5");
+
+    engine.move("B3","C3");
+    engine.move("G5","G6");
+
+    engine.move("C3","C2");
+    engine.move("G6","H7");
+
+    engine.move("C2","D2");
+
+    assertTrue(engine.getScore(Lyngk.Joueurs.Joueur1) === 1 && engine.getNbPieces() === 38);
+}
