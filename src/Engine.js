@@ -9,6 +9,9 @@ Lyngk.Engine = function () {
 
     var joueurActuel;
 
+    var couleursJoueur1 = [];
+    var couleursJoueur2 = [];
+
 
     var initPartie = function () {
         joueurActuel = Lyngk.Joueurs.Joueur1;
@@ -123,7 +126,19 @@ Lyngk.Engine = function () {
             }
         }
 
+        if(joueurActuel === Lyngk.Joueurs.Joueur1){
+            if(couleursJoueur2.indexOf(listeInter[piece1].getColor()) >= 0)
+                testFlag = false;
 
+            if(couleursJoueur1.length === 0 && listeInter[piece1].getColor() === Lyngk.Color.WHITE)
+                testFlag = false;
+        }else{
+            if(couleursJoueur1.indexOf(listeInter[piece1].getColor()) >= 0)
+                testFlag = false;
+
+            if(couleursJoueur2.length === 0 && listeInter[piece1].getColor() === Lyngk.Color.WHITE)
+                testFlag = false;
+        }
 
         return testFlag;
 
@@ -131,7 +146,7 @@ Lyngk.Engine = function () {
 
     var changerJoueur = function()
     {
-        if(joueurActuel == Lyngk.Joueurs.Joueur1)
+        if(joueurActuel === Lyngk.Joueurs.Joueur1)
             joueurActuel = Lyngk.Joueurs.Joueur2;
         else
             joueurActuel = Lyngk.Joueurs.Joueur1;
@@ -142,6 +157,25 @@ Lyngk.Engine = function () {
         return joueurActuel;
     }
 
+    this.getPlayerColors = function (joueur){
+        if(joueur === Lyngk.Joueurs.Joueur1){
+            return couleursJoueur1;
+        }else{
+            return couleursJoueur2;
+        }
+    }
+
+    this.claimColor = function (color){
+        if(couleursJoueur1.indexOf(color) < 0 && couleursJoueur2.indexOf(color) < 0) {
+            if(joueurActuel === Lyngk.Joueurs.Joueur1){
+                if(couleursJoueur1.length < 2)
+                    couleursJoueur1.push(color);
+            }else{
+                if(couleursJoueur2.length < 2)
+                    couleursJoueur2.push(color);
+            }
+        }
+    }
 
     this.one_piece_rempli = function()
     {
