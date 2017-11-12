@@ -3,64 +3,64 @@
 Lyngk.State = {VACANT: 0, ONE_PIECE: 1, STACK: 2, FULL_STACK: 3};
 
 Lyngk.Intersection = function () {
-    var etat=Lyngk.State.VACANT;
-    var listePiece = [];
-    var indiceDernierePiece = 0;
+    var state=Lyngk.State.VACANT;
+    var listPiece = [];
+    var lastPieceIndex = 0;
 
     this.getState=function () {
-        return etat;
-    }
+        return state;
+    };
 
     this.getPieces = function() {
-        return listePiece;
-    }
+        return listPiece;
+    };
 
     this.getColor=function(){
-        if(listePiece.length>0){
-            return listePiece[indiceDernierePiece-1].getColor();
+        if(listPiece.length>0){
+            return listPiece[lastPieceIndex-1].getColor();
         }else{
             return -1;
         }
-    }
+    };
 
 
     this.getHauteur =function () {
-        return listePiece.length;
-    }
+        return listPiece.length;
+    };
 
     this.placer = function (color){
-        if(listePiece.length<=0){
-            etat = Lyngk.State.ONE_PIECE;
-        }else if(listePiece.length >0 && listePiece.length<4){
-            etat = Lyngk.State.STACK;
-        }else if(listePiece.length >= 4){
-            etat = Lyngk.State.FULL_STACK;
+
+        if(listPiece.length<=0){
+            state = Lyngk.State.ONE_PIECE;
+        }else if(listPiece.length >0 && listPiece.length<4){
+            state = Lyngk.State.STACK;
+        }else if(listPiece.length >= 4){
+            state = Lyngk.State.FULL_STACK;
         }
 
-        listePiece.push(new Lyngk.Piece(color));
-        indiceDernierePiece ++;
-    }
+        listPiece.push(new Lyngk.Piece(color));
+        lastPieceIndex ++;
+    };
 
-    this.remove = function()
-    {
-        if(listePiece.length > 0) {
-            etat = Lyngk.State.VACANT;
-            var stack = listePiece;
-            etat = [];
+    this.remove = function(){
+        if(listPiece.length > 0) {
+            state = Lyngk.State.VACANT;
+            var stack = listPiece;
+            state = [];
             return stack;
         }
         return -1;
-    }
+    };
 
 
     this.colorInInter = function (color) {
         var testFlag = false;
-        for(var i=0;i<listePiece.length; i++){
-            if(listePiece[i].getColor() == color){
+        for(var i=0;i<listPiece.length; i++){
+            if(listPiece[i].getColor() === color){
                 testFlag = true;
             }
         }
         return testFlag;
-    }
+    };
 
 };

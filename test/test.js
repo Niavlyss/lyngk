@@ -16,7 +16,7 @@ LyngkTestCase.prototype.test2=function(){
     for(var i=0;i<9;i++){
         for(var j=0;j<9;j++){
             coord=new Lyngk.Coordinates(colones[i],j+1);
-            if(coord.coordVal()===true){
+            if(coord.coordinatesVal()===true){
                 cpt++;
             }
         }
@@ -44,7 +44,7 @@ LyngkTestCase.prototype.testHash6=function(){
     var coord = new Lyngk.Coordinates("A", 3);
     var coord2 = new Lyngk.Coordinates("B", 4);
 
-    if (coord.coordVal() && coord2.coordVal()){
+    if (coord.coordinatesVal() && coord2.coordinatesVal()){
         var h1=coord.hash();
         var h2=coord2.hash();
         assertTrue(h1!==h2 && h1===12);
@@ -82,7 +82,7 @@ LyngkTestCase.prototype.test10=function() {
 
 LyngkTestCase.prototype.test11=function () {
     var engine= new Lyngk.Engine();
-    assertTrue(engine.one_piece_rempli());
+    assertTrue(engine.onePieceFull());
 }
 
 LyngkTestCase.prototype.test12=function () {
@@ -100,9 +100,9 @@ LyngkTestCase.prototype.test12=function () {
     var testFlag = true;
 
     for(var i=0;i<nombreCouleurs.length;i++){
-        if(i<=4 && nombreCouleurs[i] !=8){
+        if(i<=4 && nombreCouleurs[i] !==8){
             testFlag = false;
-        }else if (i==5 && nombreCouleurs[i] !=3){
+        }else if (i===5 && nombreCouleurs[i] !==3){
             testFlag = false;
         }
     }
@@ -219,13 +219,13 @@ LyngkTestCase.prototype.test23 = function () {
 
 LyngkTestCase.prototype.test24= function () {
     var engine = new Lyngk.Engine();
-    assertTrue(engine.getJoueurCourant()===Lyngk.Joueurs.Joueur1);
+    assertTrue(engine.getActualPlayer()===Lyngk.Joueurs.Player1);
 }
 
 LyngkTestCase.prototype.test25 = function () {
     var engine =  new Lyngk.Engine();
     engine.move("A3","B3");
-    assertTrue(engine.getJoueurCourant()===Lyngk.Joueurs.Joueur2);
+    assertTrue(engine.getActualPlayer()===Lyngk.Joueurs.Player2);
 }
 
 LyngkTestCase.prototype.test26 = function (){
@@ -234,8 +234,8 @@ LyngkTestCase.prototype.test26 = function (){
     engine.move("A3","B3");
     engine.claimColor(Lyngk.Color.GREEN);
 
-    var couleursJ1 = engine.getPlayerColors(Lyngk.Joueurs.Joueur1);
-    var couleursJ2 = engine.getPlayerColors(Lyngk.Joueurs.Joueur2);
+    var couleursJ1 = engine.getPlayerColors(Lyngk.Joueurs.Player1);
+    var couleursJ2 = engine.getPlayerColors(Lyngk.Joueurs.Player2);
 
     assertTrue(couleursJ1[0] === Lyngk.Color.RED && couleursJ2[0] === Lyngk.Color.GREEN);
 }
@@ -258,5 +258,5 @@ LyngkTestCase.prototype.test27 = function () {
 
     engine.move("C2","D2");
 
-    assertTrue(engine.getScore(Lyngk.Joueurs.Joueur1) === 1 && engine.getNbPieces() === 38);
+    assertTrue(engine.getScore(Lyngk.Joueurs.Player1) === 1 && engine.getNbPieces() === 38);
 }
